@@ -2,7 +2,7 @@ import time, threading
 
 # taken from http://stackoverflow.com/a/34388942/910868
 
-class SublimeMagicMessenger(object):
+class Messenger(object):
     def __init__(self):
         self.timeout = 1
         self.view = self.timer = None
