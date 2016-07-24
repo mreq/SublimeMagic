@@ -66,6 +66,6 @@ class SublimeMagic(sublime_plugin.TextCommand):
         try:
             spell_fn = eval(spell_name + '.' + self.spell_to_class(spell_name) + 'Spell')
             spell_fn = spell_fn(self.edit, self.view, self.spell)
+            spell_fn.cast()
         except AttributeError as e:
             return self.message('Invalid args for "' + spell_name + '". ' + str(e))
-        spell_fn.cast()

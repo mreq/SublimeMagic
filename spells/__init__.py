@@ -1,1 +1,1 @@
-from .replace_text_in import ReplaceTextInSpell
+from .replace_text import ReplaceTextSpell
