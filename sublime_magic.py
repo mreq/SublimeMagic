@@ -1,7 +1,7 @@
 import re
 import sublime
 import sublime_plugin
-from . import sublime_magic_messenger
+from .messenger import sublime_magic_messenger
 from .spells import *
 
 class SublimeMagic(sublime_plugin.TextCommand):
