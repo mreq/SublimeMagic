@@ -6,6 +6,7 @@ from .spells import *
 
 class SublimeMagic(sublime_plugin.TextCommand):
     def run(self, edit):
+        self.edit = edit
         self.get_known_spells()
         self.get_defined_spells()
         self.get_scope()
@@ -64,7 +65,7 @@ class SublimeMagic(sublime_plugin.TextCommand):
             raise NotImplementedError('Unknown spell: ' + spell_name)
         try:
             spell_fn = eval(spell_name + '.' + self.spell_to_class(spell_name) + 'Spell')
-            spell_fn = spell_fn(self.spell)
+            spell_fn = spell_fn(self.edit, self.view, self.spell)
         except AttributeError as e:
             return self.message('Invalid args for "' + spell_name + '". ' + str(e))
         spell_fn.cast()

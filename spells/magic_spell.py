@@ -1,7 +1,9 @@
 class MagicSpell(object):
     required_args = []
 
-    def __init__(self, spell):
+    def __init__(self, edit, view, spell):
+        self.edit = edit
+        self.view = view
         self.spell = spell
         self.validate_args()
 

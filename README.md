@@ -1,4 +1,4 @@
-# SublimeMagic
+# ★ SublimeMagic
 
 A magic command for sublime.
 
