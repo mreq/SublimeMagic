@@ -8,6 +8,7 @@ class ReplaceTextSpell(MagicSpell):
 
     def cast(self):
         where = self.spell.get('args').get('where')
+        self.delimiter_length = len(self.spell.get('args').get('delimiter'))
         self.delimiter = re.compile(self.spell.get('args').get('delimiter'))
         self.replacement = self.spell.get('args').get('replacement')
         self.sel = self.view.sel()[0]
@@ -25,7 +26,7 @@ class ReplaceTextSpell(MagicSpell):
         elif where == 'after':
             start = self.find_first_delimiter_in_line()
             if start:
-                start = start + 1
+                start = start + self.delimiter_length
                 end = self.end_of_line()
                 if end:
                     return self.replace(start, end)
@@ -47,19 +48,12 @@ class ReplaceTextSpell(MagicSpell):
     def find_next_delimiter(self, start):
         found = None
 
-        print(start)
-        print(self.line.a)
-        print(self.line.b)
-
         while start < self.line.b and start < 999999:
-            region = sublime.Region(start, start + 1)
+            region = sublime.Region(start, start + self.delimiter_length)
             if self.delimiter.match(self.view.substr(region)):
                 found = start
                 break
             start += 1
-
-        print(found)
-        print('found')
 
         return found
 
@@ -71,4 +65,4 @@ class ReplaceTextSpell(MagicSpell):
         self.view.replace(self.edit, region, self.replacement)
 
     def end_of_line(self):
-        self.line.b
+        return self.line.b
