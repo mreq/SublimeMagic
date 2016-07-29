@@ -47,7 +47,7 @@ The spells are iterated one-by-one and the first one matching the `context` cond
 Each spell consists of the following required fields:
 
 - `name` is the human readable name of your spell
-- `spell` is the spell code, see see [Spells](#spells) for a list of spells
+- `spell` is the spell code, see ["Available spells" for a list of spells](#available-spells)
 - `args` specific to the selected spell
 
 Spells can be limited by settings a `context` (similar to key bindings, though not using the same syntax). Known context keys:
