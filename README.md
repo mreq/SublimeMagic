@@ -76,6 +76,7 @@ Spells can be limited by settings a `context` (similar to key bindings, though n
 ## Available spells
 
 - [replace_text](docs/spells/replace_text.md)
+- [perform_line_regex](docs/spells/perform_line_regex.md)
 - more to come - make a PR :)
 
 ## Example spellbook
