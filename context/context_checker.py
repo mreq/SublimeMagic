@@ -12,6 +12,9 @@ class ContextChecker(object):
         context = spell.get('context', { 'scope': [], 'line_matches': [] })
         scope = context.get('scope', [])
         line_matches = context.get('line_matches', [])
+        values = spell.get('args', { 'values': None }).get('values', None)
+        if values:
+            line_matches.append('(' + '|'.join(values) + ')')
         valid = self.check_scope(scope)
         if not valid:
             return False
