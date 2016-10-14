@@ -6,7 +6,7 @@ Does not require (but supports) explicit `context`. An additional `context` of "
 
 ## args
 
-- `values` - values to cycle through
+- `values` - values to cycle through (values are escaped using `re.escape` so don't worry about special characters)
 
 ## examples
 

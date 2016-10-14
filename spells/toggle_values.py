@@ -8,7 +8,8 @@ class ToggleValuesSpell(MagicSpell):
 
     def cast(self):
         self.values = self.spell.get('args').get('values')
-        pattern = '(' + '|'.join(self.values) + ')'
+        escaped_values = [re.escape(val) for val in self.values]
+        pattern = '(' + '|'.join(escaped_values) + ')'
 
         sel = self.view.sel()[0]
         line = self.view.line(sel.a)

@@ -14,7 +14,8 @@ class ContextChecker(object):
         line_matches = context.get('line_matches', [])
         values = spell.get('args', { 'values': None }).get('values', None)
         if values:
-            line_matches.append('(' + '|'.join(values) + ')')
+            escaped_values = [re.escape(val) for val in values]
+            line_matches.append('(' + '|'.join(escaped_values) + ')')
         valid = self.check_scope(scope)
         if not valid:
             return False
