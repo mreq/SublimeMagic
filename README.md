@@ -82,6 +82,13 @@ Spells can be limited by settings a `context` (similar to key bindings, though n
 
 ## Example spellbook
 
+Have a nice spellbook? Create a pull request and let me add a link here!
+
+Spellbooks:
++ [mreq](https://github.com/mreq/dotfiles/blob/master/subl/Packages/User/SublimeMagic.sublime-settings)
+
+A simple example:
+
 ```json
 {
   "spells": [
