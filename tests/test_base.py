@@ -1,5 +1,6 @@
 import sublime
-import base
+
+from base import SublimeMagicTestCase
 
 
 class TestSublimeMagicBase(base.SublimeMagicTestCase):
