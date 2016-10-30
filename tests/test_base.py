@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 import sublime
 
 from base import SublimeMagicTestCase
 
 
-class TestSublimeMagicBase(base.SublimeMagicTestCase):
+class TestSublimeMagicBase(SublimeMagicTestCase):
 
     def test_base_command(self):
         self.setText('foo bar')

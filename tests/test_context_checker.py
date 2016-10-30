@@ -3,11 +3,7 @@ import sys
 
 from base import SublimeMagicTestCase
 
-if sublime.version() < '3000':
-    context_checker_module = sys.modules['context.context_checker']
-else:
-    context_checker_module = sys.modules[
-        'SublimeMagic.context.context_checker']
+context_checker_module = sys.modules['SublimeMagic.context.context_checker']
 
 
 class TestContextChecker(SublimeMagicTestCase):
