@@ -34,4 +34,6 @@ script:
 after_success:
 
 notifications:
-    email: false
+    email:
+        on_success: change
+        on_failure: always
