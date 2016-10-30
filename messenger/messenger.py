@@ -1,8 +1,11 @@
-import time, threading
+import time
+import threading
 
 # taken from http://stackoverflow.com/a/34388942/910868
 
+
 class Messenger(object):
+
     def __init__(self):
         self.timeout = 1
         self.view = self.timer = None
@@ -11,7 +14,7 @@ class Messenger(object):
         self.cancel_timer()
         self.view = view
         if overwrite:
-            self.view.set_status('SublimeMagic', msg+'\n')
+            self.view.set_status('SublimeMagic', msg + '\n')
         else:
             self.view.set_status('SublimeMagic', msg)
         self.start_timer()

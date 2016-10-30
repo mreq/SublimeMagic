@@ -5,7 +5,9 @@ from .messenger import messenger
 from .context import context_checker
 from .spells import *
 
+
 class SublimeMagic(sublime_plugin.TextCommand):
+
     def run(self, edit):
         self.edit = edit
         self.get_known_spells()
@@ -28,7 +30,8 @@ class SublimeMagic(sublime_plugin.TextCommand):
                     self.known_spells.append(name)
 
     def get_defined_spells(self):
-        self.magic_settings = sublime.load_settings('SublimeMagic.sublime-settings')
+        self.magic_settings = sublime.load_settings(
+            'SublimeMagic.sublime-settings')
         self.spells = self.magic_settings.get('spells')
 
     def find_first_matching_spell(self):
@@ -52,7 +55,11 @@ class SublimeMagic(sublime_plugin.TextCommand):
         if not spell_name in self.known_spells:
             raise NotImplementedError('Unknown spell: ' + spell_name)
         try:
-            spell_fn = eval(spell_name + '.' + self.spell_to_class(spell_name) + 'Spell')
+            spell_fn = eval(
+                spell_name +
+                '.' +
+                self.spell_to_class(spell_name) +
+                'Spell')
             spell_fn = spell_fn(self.edit, self.view, self.spell)
             spell_fn.cast()
             name = self.spell.get('name', None)
@@ -60,4 +67,5 @@ class SublimeMagic(sublime_plugin.TextCommand):
                 name = spell_name
             self.message('Casted ' + name)
         except AttributeError as e:
-            return self.message('Invalid args for "' + spell_name + '". ' + str(e))
+            return self.message('Invalid args for "' +
+                                spell_name + '". ' + str(e))

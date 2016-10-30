@@ -3,6 +3,7 @@ import sublime
 
 from .magic_spell import MagicSpell
 
+
 class PerformLineRegexSpell(MagicSpell):
     required_args = ['pattern', 'replacement']
 

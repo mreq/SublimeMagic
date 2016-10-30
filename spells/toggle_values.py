@@ -3,6 +3,7 @@ import sublime
 
 from .magic_spell import MagicSpell
 
+
 class ToggleValuesSpell(MagicSpell):
     required_args = ['values']
 

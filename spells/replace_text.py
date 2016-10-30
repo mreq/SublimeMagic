@@ -3,6 +3,7 @@ import sublime
 
 from .magic_spell import MagicSpell
 
+
 class ReplaceTextSpell(MagicSpell):
     required_args = ['where', 'delimiter', 'replacement']
 

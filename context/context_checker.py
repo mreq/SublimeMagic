@@ -1,6 +1,8 @@
 import re
 
+
 class ContextChecker(object):
+
     def __init__(self, view):
         self.view = view
         self.sel = self.view.sel()[0]
@@ -9,10 +11,10 @@ class ContextChecker(object):
         self.scope_name = self.view.scope_name(self.sel.a)
 
     def check(self, spell):
-        context = spell.get('context', { 'scope': [], 'line_matches': [] })
+        context = spell.get('context', {'scope': [], 'line_matches': []})
         scope = context.get('scope', [])
         line_matches = context.get('line_matches', [])
-        values = spell.get('args', { 'values': None }).get('values', None)
+        values = spell.get('args', {'values': None}).get('values', None)
         if values:
             escaped_values = [re.escape(val) for val in values]
             line_matches.append('(' + '|'.join(escaped_values) + ')')
