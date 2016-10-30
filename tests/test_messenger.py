@@ -3,7 +3,10 @@ import sys
 
 from base import SublimeMagicTestCase
 
-messenger_module = sys.modules['SublimeMagic.messenger.messenger']
+if sublime.version() < '3000':
+    messenger_module = sys.modules["messenger"]
+else:
+    messenger_module = sys.modules['SublimeMagic.messenger.messenger']
 
 
 class TestMessenger(SublimeMagicTestCase):
