@@ -1,0 +1,7 @@
+[
+  {
+    "caption": "SublimeMagic: open spellbook",
+    "command": "open_file",
+    "args": { "file": "${packages}/User/SublimeMagic.sublime-settings" }
+  }
+]
