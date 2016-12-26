@@ -78,6 +78,7 @@ Spells can be limited by settings a `context` (similar to key bindings, though n
 - [replace_text](docs/spells/replace_text.md)
 - [perform_line_regex](docs/spells/perform_line_regex.md)
 - [toggle_values](docs/spells/toggle_values.md)
+- [sublime_command](docs/spells/sublime_command.md)
 - more to come - make a PR :)
 
 ## Example spellbook
