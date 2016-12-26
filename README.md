@@ -6,9 +6,9 @@ A magic command for sublime. Create a spellbook, cast spells on your code, make 
 
 SublimeMagic provides a `sublime_magic` command, which looks through user-defined actions and performs the first matching one.
 
-## Set your spell hotkey!
+## Use the spell hotkey!
 
-The plugin comes without default key bindings. To use the plugin, you have to bind the `sublime_magic` command.
+Default keybind is `alt + spacebar` but you can set your own. To use the plugin, you have to bind the `sublime_magic` command.
 
 Regular example:
 
