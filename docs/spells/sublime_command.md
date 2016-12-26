@@ -1,10 +1,10 @@
-# perform_line_regex spell
+# sublime_command spell
 
-A spell for running any sublime command.
+A spell for running a sublime command.
 
 ## args
 
-- `command` - regexp pattern 
+- `command` - command to be run
 - `args` - arguments for the command
 
 ## examples
