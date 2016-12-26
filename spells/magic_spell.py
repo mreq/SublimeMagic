@@ -4,6 +4,7 @@ class MagicSpell(object):
     def __init__(self, edit, view, spell):
         self.edit = edit
         self.view = view
+        self.window = view.window()
         self.spell = spell
         self.validate_args()
 

@@ -11,7 +11,7 @@ class SublimeMagic(sublime_plugin.TextCommand):
     def run(self, edit):
         self.edit = edit
         self.get_known_spells()
-        self.get_defined_spells()
+        self.get_user_spells()
         self.find_first_matching_spell()
         if self.spell is None:
             self.message('No spell found.')
@@ -29,15 +29,15 @@ class SublimeMagic(sublime_plugin.TextCommand):
                 if 'SublimeMagic.spells' in val.__name__:
                     self.known_spells.append(name)
 
-    def get_defined_spells(self):
+    def get_user_spells(self):
         self.magic_settings = sublime.load_settings(
             'SublimeMagic.sublime-settings')
-        self.spells = self.magic_settings.get('spells')
+        self.user_spells = self.magic_settings.get('spells')
 
     def find_first_matching_spell(self):
         self.spell = None
         checker = context_checker.ContextChecker(self.view)
-        for spell in self.spells:
+        for spell in self.user_spells:
             if checker.check(spell):
                 self.spell = spell
                 break
