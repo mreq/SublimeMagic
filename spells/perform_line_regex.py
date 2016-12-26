@@ -9,14 +9,15 @@ class PerformLineRegexSpell(MagicSpell):
 
     def cast(self):
         pattern = re.compile(self.spell.get('args').get('pattern'))
-        replacement = self.spell.get('args').get('replacement')
-        sel = self.view.sel()[0]
-        line = self.view.line(sel.a)
 
+        replacement = self.spell.get('args').get('replacement')
         if replacement == '$clipboard':
             replacement = sublime.get_clipboard()
 
-        line_text = self.view.substr(line)
-        new_line_text = re.sub(pattern, "%s" % replacement, line_text)
+        for sel in self.view.sel():
+            line = self.view.line(sel.a)
 
-        return self.view.replace(self.edit, line, new_line_text)
+            line_text = self.view.substr(line)
+            new_line_text = re.sub(pattern, "%s" % replacement, line_text)
+
+            self.view.replace(self.edit, line, new_line_text)

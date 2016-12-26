@@ -2,6 +2,7 @@ import re
 import sublime
 
 from .magic_spell import MagicSpell
+from ..utils import utils
 
 
 class ReplaceTextSpell(MagicSpell):
@@ -9,61 +10,39 @@ class ReplaceTextSpell(MagicSpell):
 
     def cast(self):
         where = self.spell.get('args').get('where')
-        self.delimiter_length = len(self.spell.get('args').get('delimiter'))
-        self.delimiter = re.compile(self.spell.get('args').get('delimiter'))
-        self.replacement = self.spell.get('args').get('replacement')
-        self.sel = self.view.sel()[0]
-        self.line = self.view.line(self.sel.a)
+        delimiter = self.spell.get('args').get('delimiter')
+        delimiter_length = len(delimiter)
+        re_delimiter = re.compile(delimiter)
 
+        self.replacement = self.spell.get('args').get('replacement')
         if self.replacement == '$clipboard':
             self.replacement = sublime.get_clipboard()
 
-        if where == 'inside':
-            start = self.find_previous_delimiter(self.sel.a)
-            if start:
-                end = self.find_next_delimiter(self.sel.b)
-                if end:
-                    return self.replace(start, end)
-        elif where == 'after':
-            start = self.find_first_delimiter_in_line()
-            if start:
-                start = start + self.delimiter_length
-                end = self.end_of_line()
-                if end:
-                    return self.replace(start, end)
-        else:
-            raise AttributeError('Unknown value for "where": ' + where)
+        for sel in self.view.sel():
+            line = self.view.line(sel.a)
 
-    def find_previous_delimiter(self, start):
-        found = None
+            if where == 'inside':
+                start = utils.find_previous_delimiter(
+                    self.view, line, re_delimiter, sel.a)
 
-        while start > self.line.a and start > 0:
-            region = sublime.Region(start - 1, start)
-            if self.delimiter.match(self.view.substr(region)):
-                found = start
-                break
-            start -= 1
+                if start:
+                    end = utils.find_next_delimiter(
+                        self.view, line, re_delimiter, delimiter_length, sel.b)
+                    if end:
+                        self.replace(start, end)
 
-        return found
+            elif where == 'after':
+                start = utils.find_next_delimiter(
+                    self.view, line, re_delimiter, delimiter_length, line.a)
+                if start:
+                    start = start + delimiter_length
+                    end = line.b
+                    if end:
+                        return self.replace(start, end)
 
-    def find_next_delimiter(self, start):
-        found = None
-
-        while start < self.line.b and start < 999999:
-            region = sublime.Region(start, start + self.delimiter_length)
-            if self.delimiter.match(self.view.substr(region)):
-                found = start
-                break
-            start += 1
-
-        return found
-
-    def find_first_delimiter_in_line(self):
-        return self.find_next_delimiter(self.line.a)
+            else:
+                raise AttributeError('Unknown value for "where": ' + where)
 
     def replace(self, start, end):
         region = sublime.Region(start, end)
         self.view.replace(self.edit, region, self.replacement)
-
-    def end_of_line(self):
-        return self.line.b

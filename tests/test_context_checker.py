@@ -2,36 +2,29 @@ import sublime
 import sys
 
 from base import SublimeMagicTestCase
+from SublimeMagic.context import context
 
-context_checker_module = sys.modules['SublimeMagic.context.context_checker']
+
+def c(a):
+    return {
+        'context': a
+    }
 
 
 class TestContextChecker(SublimeMagicTestCase):
 
-    def test_scope_name(self):
-        checker = context_checker_module.ContextChecker(self.view)
-        self.assertEqual(checker.scope_name, 'text.plain ')
-
-    def test_line_text(self):
-        self.setText('foo bar')
-        checker = context_checker_module.ContextChecker(self.view)
-        self.assertEqual(checker.line_text, 'foo bar')
-
     def test_check_scope(self):
-        checker = context_checker_module.ContextChecker(self.view)
+        test_context = c({'scope': ['plain']})
+        self.assertTrue(context.check(self.view, test_context))
 
-        target_scopes = ['plain']
-        self.assertTrue(checker.check_scope(target_scopes))
-
-        target_scopes = ['foobar']
-        self.assertFalse(checker.check_scope(target_scopes))
+        test_context = c({'scope': ['foobar']})
+        self.assertFalse(context.check(self.view, test_context))
 
     def test_check_line_matches(self):
         self.setText('foo bar')
-        checker = context_checker_module.ContextChecker(self.view)
 
-        target_parts = ['foo', 'bar', 'foo bar']
-        self.assertTrue(checker.check_line_matches(target_parts))
+        test_context = c({'line_matches': ['foo', 'bar', 'foo bar']})
+        self.assertTrue(context.check(self.view, test_context))
 
-        target_parts = ['foobar']
-        self.assertFalse(checker.check_line_matches(target_parts))
+        test_context = c({'line_matches': ['foobar']})
+        self.assertFalse(context.check(self.view, test_context))
