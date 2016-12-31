@@ -28,7 +28,7 @@ Does not require (but supports) explicit `context`. An additional `context` of "
 {
   "name": "Toggle CSS direction",
   "context": {
-    "scope": ["source\\.(css|less|sass)"]
+    "scope": ["source\\.(css|less|sass|scss)"]
   },
   "spell": "toggle_values",
   "args": {
