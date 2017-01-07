@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/). Changelog muster from [olivierlacan/keep-a-changelog](https://github.com/olivierlacan/keep-a-changelog).
 
+## [0.2.1] - 2016-01-07
+### Added
+- support `$cursor` in `replace_text` spell
+
 ## [0.2.0] - 2016-12-26
 ### Added
 - default `alt+space` keymap

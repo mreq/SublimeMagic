@@ -5,7 +5,7 @@ A spell for replacing text inside/after delimiters.
 ## args
 
 - `delimiter` - regexp pattern to be matched
-- `replacement` - text used for replacement - when `$clipboard`, the clipboard content is used
+- `replacement` - text used for replacement - `$clipboard` is replaced with the clipboard content; `$cursor` will be replaced by the cursor after the replacement
 - `where`
   - `inside` - replace text inside/between the delimiters
   - `after` - replace text after the delimiter
