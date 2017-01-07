@@ -54,7 +54,9 @@ Spells can be limited by settings a `context` (similar to key bindings, though n
 
 - `scope` - an array of required scope names (using regexp) - all patterns must match 
 - `line_matches` - an array of patterns that the current line must match
-- more to come - make a PR :)
+- `selection_empty` - when `true`, some text has to be selected; when `false`, there must be no selection
+- `selection_matches` - an array of patterns that the currently selected text must match
+- need more? - make an issue, or even better a PR :)
 
 ### Spell example
 

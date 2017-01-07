@@ -17,6 +17,8 @@ class SublimeMagicTestCase(TestCase):
             self.view.window().run_command("close_file")
 
     def setText(self, string):
+        self.view.sel().clear()
+        self.view.sel().add(sublime.Region(0, self.view.size()))
         self.view.run_command("insert", {"characters": string})
 
     def getRow(self, row):
